@@ -6,7 +6,7 @@
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    id("org.jetbrains.kotlin.jvm")
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -18,27 +18,14 @@ repositories {
     jcenter()
 ***REMOVED***
 
-allprojects {
-    repositories {
-        jcenter()
-  ***REMOVED***
-***REMOVED***
-
 dependencies {
-    // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-
-    // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-    // Use the Kotlin test library.
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-
-    // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    implementation(project(":login"))
+    implementation("org.springframework.boot:spring-boot:2.4.0")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.4.0")
+    implementation("org.springframework.boot:spring-boot-starter-validation:2.4.0")
 ***REMOVED***
 
 application {
     // Define the main class for the application.
-    mainClassName = "isdb.AppKt"
+    mainClassName = "application.AppKt"
 ***REMOVED***
