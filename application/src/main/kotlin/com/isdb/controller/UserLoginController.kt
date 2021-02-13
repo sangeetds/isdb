@@ -62,9 +62,4 @@ class UserLoginController
 
         return Status.SUCCESS
   ***REMOVED***
-
-    @GetMapping("/users")
-    fun getAllUsers() {
-        print(this.userService.findAllUsers())
-  ***REMOVED***
 ***REMOVED***
