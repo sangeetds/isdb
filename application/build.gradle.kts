@@ -53,3 +53,10 @@ tasks.withType<Jar> {
         attributes["Main-Class"] = "com.isdb.DemoApplicationKt"
   ***REMOVED***
 ***REMOVED***
+
+
+tasks.withType<org.gradle.api.tasks.bundling.Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.isdb.DemoApplicationKt"
+  ***REMOVED***
+***REMOVED***
