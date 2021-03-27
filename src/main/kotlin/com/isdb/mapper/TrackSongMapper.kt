@@ -20,7 +20,6 @@ class TrackSongMapper {
 
     fun List<SimpleTrack>.toSongDTO(): List<SongDTO> = this.map { track ->
         SongDTO(
-          id = (0..10000000).random(),
           name = track.name,
           albumName = track.album.name,
           releaseDate = track.album.releaseDate,
@@ -31,30 +30,15 @@ class TrackSongMapper {
     ***REMOVED***.distinctBy { it.spotifyId ***REMOVED***
 
     fun List<Song>.getSongDTO(): List<SongDTO> = this.map { song ->
-      Logger.getGlobal().info("$song")
-      val album = readString(Album::class.java, song.album.toString())
-
       SongDTO(
-        id = song.id,
+        id = song.id!!,
         name = song.name,
-        albumName = album?.name ?: "",
-        releaseDate = album?.releaseDate ?: "",
-        image = listFromString(Image::class.java, album?.images.toString()) ?: listOf(),
+        albumName = song.album.name ?: "",
+        releaseDate = song.releaseDate ?: "",
+        image = song.album.images,
         spotifyId = song.spotifyId,
         url = song.url.spotify ?: ""
       )
-  ***REMOVED***
-
-    private fun <T> readString(type: Class<T>, jsonString: String) =
-      this.moshi.adapter(type).fromJson(jsonString)
-
-    private fun <T> listFromString(type: Class<T>, jsonString: String): List<T>? {
-      val listMyData = Types.newParameterizedType(
-        List::class.java, type
-      )
-      val adapter: JsonAdapter<List<T>> = moshi.adapter(listMyData)
-
-      return adapter.fromJson(jsonString)
   ***REMOVED***
 ***REMOVED***
 ***REMOVED***

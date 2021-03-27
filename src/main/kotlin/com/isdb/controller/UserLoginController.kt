@@ -1,68 +1,63 @@
 package com.isdb.controller
 
-import com.isdb.enums.Status
 import com.isdb.model.User
 import com.isdb.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.Valid
 
 @RestController
 class UserLoginController
 (@Autowired private val userService: UserService) {
 
   @PostMapping("/users/register")
-  fun registerUser(@Valid @RequestBody newUser: User): Status {
+  fun registerUser(@RequestBody newUser: User): ResponseEntity<User> {
     val users = this.userService.findAllUsers()
 
     for (user in users) {
       if (user!! == newUser && user.email == newUser.email) {
-        println("User Already exists!")
-        return Status.USER_ALREADY_EXISTS
+
+        return ResponseEntity.badRequest().build()
     ***REMOVED***
   ***REMOVED***
 
-    this.userService.saveUser(newUser)
-
-    return Status.SUCCESS
+    return ResponseEntity.ok(this.userService.saveUser(newUser))
 ***REMOVED***
 
   @PostMapping("/users/login")
-  fun loginUser(@Valid @RequestBody user: User): Status {
+  fun loginUser(@RequestBody user: User): ResponseEntity<User> {
     val users = this.userService.findAllUsers()
 
     for (other in users) {
       if (other!!.email == user.email && other.password == user.password) {
         user.isLoggedIn = true
-        this.userService.saveUser(user)
-        return Status.SUCCESS
+
+        return ResponseEntity.ok(this.userService.saveUser(user))
     ***REMOVED***
   ***REMOVED***
 
-    return Status.FAILURE
+    return ResponseEntity.notFound().build()
 ***REMOVED***
 
   @PostMapping("/users/logout")
-  fun logUserOut(@RequestBody user: @Valid User?): Status {
+  fun logUserOut(@RequestBody user: User?): ResponseEntity<User> {
     val users = this.userService.findAllUsers()
 
-    for (other in users) {
-      if (other!! == user) {
+    for (otherUsers in users) {
+      if (otherUsers!! == user) {
         user.isLoggedIn = false
-        this.userService.saveUser(user)
-        return Status.SUCCESS
+
+        return ResponseEntity.ok(this.userService.saveUser(user))
     ***REMOVED***
   ***REMOVED***
-    return Status.FAILURE
+
+    return ResponseEntity.notFound().build()
 ***REMOVED***
 
   @DeleteMapping("/users/all")
-  fun deleteUsers(): Status {
+  fun deleteUsers() =
     this.userService.deleteAllUser()
-
-    return Status.SUCCESS
-***REMOVED***
 ***REMOVED***

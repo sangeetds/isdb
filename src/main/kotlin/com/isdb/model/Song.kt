@@ -1,9 +1,11 @@
 package com.isdb.model
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
 
+@Document
 data class Song(
-   @Id val id: Int,
+   @Id val id: String?,
    val name: String = "",
    val url: Url = Url(""),
    val album: Album = Album(""),

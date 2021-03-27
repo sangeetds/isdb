@@ -3,7 +3,7 @@ package com.isdb.dto
 import com.isdb.model.Image
 
 data class SongDTO(
-  val id: Int,
+  val id: String = "",
   val name: String = "",
   val albumName: String = "",
   val releaseDate: String = "",
