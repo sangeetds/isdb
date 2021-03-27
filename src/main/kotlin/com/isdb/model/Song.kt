@@ -9,12 +9,9 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "song")
-// TODO(Make the fields as objects)
-// TODO(Return objects)
-// TODO(Deserialze name properly)
+// TODO(Deserialize name properly)
 // TODO(Image is coming as empty)
 // TODO(Release is empty)
-// TODO(URL should be there)
 data class Song(
   @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int = 0,
   @Column(name = "name") val name: String = "",

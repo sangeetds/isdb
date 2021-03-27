@@ -1,6 +1,8 @@
 package com.isdb.controller
 
-import com.isdb.mapper.TrackSongMapper.Companion.toSongs
+import com.isdb.dto.SongDTO
+import com.isdb.mapper.TrackSongMapper.Companion.getSongDTO
+import com.isdb.mapper.TrackSongMapper.Companion.toSongDTO
 import com.isdb.model.Song
 import com.isdb.repository.SongsRepository
 import com.isdb.spotify.SpotifyAPI
@@ -17,15 +19,15 @@ import org.springframework.web.bind.annotation.RestController
 class SongsController(@Autowired val songsRepository: SongsRepository) {
 
   @GetMapping("tracks")
-  fun getSongs(@Nullable @RequestParam("search") songName: String?): ResponseEntity<List<Song>> {
+  fun getSongs(@Nullable @RequestParam("search") songName: String?): ResponseEntity<List<SongDTO>> {
     songName?.let {
-      val ratedSongs = this.songsRepository.findSongsByName(songName)
-      val searchSongs = SpotifyAPI().getUserTrack(songName).toSongs()
+      val ratedSongs = this.songsRepository.findSongsByName(songName).getSongDTO()
+      val searchSongs = SpotifyAPI().getUserTrack(songName).toSongDTO()
 
       return ResponseEntity.ok().body(ratedSongs + searchSongs)
   ***REMOVED***
 
-    return ResponseEntity.ok().body(this.songsRepository.findAll())
+    return ResponseEntity.ok().body(this.songsRepository.findAll().getSongDTO())
 ***REMOVED***
 
   @PostMapping("tracks")
