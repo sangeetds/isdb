@@ -1,10 +1,9 @@
 package com.isdb.dto
 
-import com.isdb.model.Album
 import com.isdb.model.Image
 
 data class SongDTO(
-  val id: Int = 0,
+  val id: Int,
   val name: String = "",
   val albumName: String = "",
   val releaseDate: String = "",

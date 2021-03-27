@@ -22,14 +22,18 @@ class SongsController(@Autowired val songsRepository: SongsRepository) {
   fun getSongs(@Nullable @RequestParam("search") songName: String?): ResponseEntity<List<SongDTO>> {
     songName?.let {
       val ratedSongs = this.songsRepository.findSongsByName(songName).getSongDTO()
-      val searchSongs = SpotifyAPI().getUserTrack(songName).toSongDTO()
-
-      return ResponseEntity.ok().body(ratedSongs + searchSongs)
+      val searchSongs = SpotifyAPI().getUserTrack(songName)
+      println("searchSongs = ${searchSongs***REMOVED***")
+      return ResponseEntity.ok().body(ratedSongs + searchSongs.toSongDTO())
   ***REMOVED***
 
     return ResponseEntity.ok().body(this.songsRepository.findAll().getSongDTO())
 ***REMOVED***
 
   @PostMapping("tracks")
-  fun rateSong(@RequestBody song: Song): Song = this.songsRepository.save(song)
+  fun rateSong(@RequestBody song: Song): Song {
+    println(song)
+    println(song.url)
+    return this.songsRepository.save(song)
+***REMOVED***
 ***REMOVED***

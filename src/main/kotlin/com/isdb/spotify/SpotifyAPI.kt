@@ -16,7 +16,7 @@ class SpotifyAPI {
 ***REMOVED***
 
   fun getUserTrack(track: String): List<SimpleTrack> {
-    val token = getAuthToken()?.access_token ?: ""
+    val token = getAuthToken()?.accessToken ?: ""
     val retrofitService = RetrofitAdapter.getRetrofit(action = Action.TRACK, token = token)
     val tracks = getTrack(service = retrofitService, trackSearchValue = track, "track")
 

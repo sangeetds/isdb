@@ -1,13 +1,18 @@
 package com.isdb.model
 
-data class Album(
-  val id: String = "",
-  val name: String = "",
-  val releaseDate: String = "",
-  val Images: List<Image> = listOf(),
-  val externalUrls: Url = Url()
-)
+import com.squareup.moshi.Json
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.OneToMany
+import javax.persistence.OneToOne
 
-data class Url(
-  val spotify: String = ""
+@Entity
+data class Album(
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: String,
+  val name: String = "",
+  @Json(name = "release_date") @Column(name = "release_date") val releaseDate: String = "",
+  @OneToMany val images: List<Image> = listOf(),
 )

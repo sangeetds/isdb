@@ -55,11 +55,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-
-    // postgres
-    runtimeOnly("org.postgresql:postgresql:9.4-1206-jdbc42")
-
-    runtimeOnly("com.h2database:h2")
+    implementation("org.springframework.data:spring-data-mongodb")
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")

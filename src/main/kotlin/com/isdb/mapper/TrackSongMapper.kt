@@ -9,7 +9,9 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.util.UUID
 import java.util.logging.Logger
+import kotlin.random.Random
 
 class TrackSongMapper {
 
@@ -18,27 +20,28 @@ class TrackSongMapper {
 
     fun List<SimpleTrack>.toSongDTO(): List<SongDTO> = this.map { track ->
         SongDTO(
+          id = (0..10000000).random(),
           name = track.name,
           albumName = track.album.name,
           releaseDate = track.album.releaseDate,
-          image = track.album.Images,
+          image = track.album.images,
           spotifyId = track.id,
-          url = track.album.externalUrls.spotify
+          url = track.externalUrls.spotify
         )
     ***REMOVED***.distinctBy { it.spotifyId ***REMOVED***
 
     fun List<Song>.getSongDTO(): List<SongDTO> = this.map { song ->
       Logger.getGlobal().info("$song")
-      val album = readString(Album::class.java, song.album)
+      val album = readString(Album::class.java, song.album.toString())
 
       SongDTO(
         id = song.id,
         name = song.name,
         albumName = album?.name ?: "",
         releaseDate = album?.releaseDate ?: "",
-        image = listFromString(Image::class.java, song.image!!) ?: listOf(),
+        image = listFromString(Image::class.java, album?.images.toString()) ?: listOf(),
         spotifyId = song.spotifyId,
-        url = album?.externalUrls?.spotify ?: ""
+        url = song.url.spotify ?: ""
       )
   ***REMOVED***
 
