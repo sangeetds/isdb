@@ -1,20 +1,11 @@
 package com.isdb.model
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
-import javax.validation.constraints.Email
-import javax.validation.constraints.NotNull
+import org.springframework.data.annotation.Id
 
-@Entity
-@Table(name = "users")
 data class User(
-  @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long = 0,
-  @NotNull @Column(name = "username") var username: String = "",
-  @NotNull @Column(name = "password") var password: String = "",
-  @NotNull @Email @Column(name = "email") var email: String = "",
-  @Column(name = "logged_in") var isLoggedIn: Boolean = false
+  @Id var id: Long = 0,
+  var username: String = "",
+  var password: String = "",
+  var email: String = "",
+  var isLoggedIn: Boolean = false
 )

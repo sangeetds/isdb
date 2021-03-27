@@ -1,11 +1,6 @@
 package com.isdb.model
 
 import com.squareup.moshi.Json
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToOne
 
 data class SimpleTrack(
   @Json(name = "id") val id: String = "",
