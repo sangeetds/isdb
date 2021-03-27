@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class UserServiceImpl(@Autowired private val userRepository: UserRepository): UserService {
-    override fun findAllUsers(): MutableList<User?> = this.userRepository.findAll()
+class UserServiceImpl(@Autowired private val userRepository: UserRepository) : UserService {
+  override fun findAllUsers(): MutableList<User?> = this.userRepository.findAll()
 
-    override fun saveUser(user: User): User = this.userRepository.save(user)
+  override fun saveUser(user: User): User = this.userRepository.save(user)
 
-    override fun deleteAllUser() {
-        this.userRepository.deleteAll()
-  ***REMOVED***
-
+  override fun deleteAllUser() {
+    this.userRepository.deleteAll()
+***REMOVED***
 ***REMOVED***

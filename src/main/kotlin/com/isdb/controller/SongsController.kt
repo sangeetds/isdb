@@ -2,30 +2,32 @@ package com.isdb.controller
 
 import com.isdb.mapper.TrackSongMapper.Companion.toSongs
 import com.isdb.model.Song
-import com.isdb.repository.UserRepository
 import com.isdb.repository.SongsRepository
 import com.isdb.spotify.SpotifyAPI
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class SongsController(@Autowired val songsRepository: SongsRepository) {
 
-    @GetMapping("tracks")
-    fun getSongs(@Nullable @RequestParam("search") songName: String?): ResponseEntity<List<Song>> {
-        songName?.let {
-            val ratedSongs = this.songsRepository.findSongsByName(songName)
-            val searchSongs = SpotifyAPI().getUserTrack(songName).toSongs()
+  @GetMapping("tracks")
+  fun getSongs(@Nullable @RequestParam("search") songName: String?): ResponseEntity<List<Song>> {
+    songName?.let {
+      val ratedSongs = this.songsRepository.findSongsByName(songName)
+      val searchSongs = SpotifyAPI().getUserTrack(songName).toSongs()
 
-            return ResponseEntity.ok().body(ratedSongs + searchSongs)
-      ***REMOVED***
-
-        return ResponseEntity.ok().body(this.songsRepository.findAll())
+      return ResponseEntity.ok().body(ratedSongs + searchSongs)
   ***REMOVED***
 
-    @PostMapping("tracks")
-    fun rateSong(@RequestBody song: Song): Song = this.songsRepository.save(song)
+    return ResponseEntity.ok().body(this.songsRepository.findAll())
+***REMOVED***
 
+  @PostMapping("tracks")
+  fun rateSong(@RequestBody song: Song): Song = this.songsRepository.save(song)
 ***REMOVED***

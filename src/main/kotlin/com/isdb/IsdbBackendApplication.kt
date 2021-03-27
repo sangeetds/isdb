@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class IsdbBackendApplication
 
 fun main(args: Array<String>) {
-    runApplication<IsdbBackendApplication>(*args)
+  runApplication<IsdbBackendApplication>(*args)
 ***REMOVED***
