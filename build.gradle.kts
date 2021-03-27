@@ -53,6 +53,9 @@ dependencies {
     // spring mongo
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
+    // spring API docs
+    implementation("org.springdoc:springdoc-openapi-ui:1.5.6")
+
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
