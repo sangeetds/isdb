@@ -56,6 +56,9 @@ dependencies {
     // spring API docs
     implementation("org.springdoc:springdoc-openapi-ui:1.5.6")
 
+    // Kotlin logging
+    implementation("io.github.microutils:kotlin-logging:1.12.5")
+
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 

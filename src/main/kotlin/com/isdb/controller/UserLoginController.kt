@@ -14,48 +14,16 @@ class UserLoginController
 (@Autowired private val userService: UserService) {
 
   @PostMapping("/users/register")
-  fun registerUser(@RequestBody newUser: User): ResponseEntity<User> {
-    val users = this.userService.findAllUsers()
-
-    for (user in users) {
-      if (user!! == newUser && user.email == newUser.email) {
-
-        return ResponseEntity.badRequest().build()
-    ***REMOVED***
-  ***REMOVED***
-
-    return ResponseEntity.ok(this.userService.saveUser(newUser))
-***REMOVED***
+  fun registerUser(@RequestBody newUser: User): ResponseEntity<User> =
+    this.userService.registerUser(newUser)
 
   @PostMapping("/users/login")
-  fun loginUser(@RequestBody user: User): ResponseEntity<User> {
-    val users = this.userService.findAllUsers()
-
-    for (other in users) {
-      if (other!!.email == user.email && other.password == user.password) {
-        user.isLoggedIn = true
-
-        return ResponseEntity.ok(this.userService.saveUser(user))
-    ***REMOVED***
-  ***REMOVED***
-
-    return ResponseEntity.notFound().build()
-***REMOVED***
+  fun loginUser(@RequestBody user: User): ResponseEntity<User> =
+    this.userService.loginUser(user)
 
   @PostMapping("/users/logout")
-  fun logUserOut(@RequestBody user: User?): ResponseEntity<User> {
-    val users = this.userService.findAllUsers()
-
-    for (otherUsers in users) {
-      if (otherUsers!! == user) {
-        user.isLoggedIn = false
-
-        return ResponseEntity.ok(this.userService.saveUser(user))
-    ***REMOVED***
-  ***REMOVED***
-
-    return ResponseEntity.notFound().build()
-***REMOVED***
+  fun logUserOut(@RequestBody user: User): ResponseEntity<User> =
+    this.userService.logOutUser(user)
 
   @DeleteMapping("/users/all")
   fun deleteUsers() =

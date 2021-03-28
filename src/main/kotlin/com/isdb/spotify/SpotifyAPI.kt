@@ -1,6 +1,5 @@
 package com.isdb.spotify
 
-import com.isdb.endpoints.SpotifyEndpoints
 import com.isdb.endpoints.getToken
 import com.isdb.endpoints.getTrack
 import com.isdb.endpoints.getTracks

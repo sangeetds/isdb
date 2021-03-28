@@ -20,7 +20,7 @@ class TrackSongMapper {
         spotifyId = track.id,
         url = track.externalUrls.spotify
       )
-  ***REMOVED***.distinctBy { it.spotifyId ***REMOVED***
+  ***REMOVED***
 
     fun List<Song>.getSongDTO(): List<SongDTO> = this.map { song ->
       SongDTO(
