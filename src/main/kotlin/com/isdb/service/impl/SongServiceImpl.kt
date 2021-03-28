@@ -18,7 +18,7 @@ class SongServiceImpl(@Autowired val songsRepository: SongsRepository) : SongSer
   override fun getTracks(songName: String?): List<SongDTO> {
     songName?.let {
       val ratedSongs = this.songsRepository.findSongsByName(songName).getSongDTO()
-      val searchSongs = spotifyApi.getUserTrack(songName).toSongDTO()
+      val searchSongs = spotifyApi.getUserTracks(songName).toSongDTO()
 
       return ratedSongs + searchSongs
   ***REMOVED***
@@ -27,7 +27,7 @@ class SongServiceImpl(@Autowired val songsRepository: SongsRepository) : SongSer
 ***REMOVED***
 
   override fun saveTrack(songDto: SongDTO): Song {
-    val track = spotifyApi.getTrack(songDto.spotifyId)
+    val track = spotifyApi.getUserTrack(songDto.spotifyId)
     val songToBeSaved = Song(songDto.id, track.name)
 
     return this.songsRepository.save(songToBeSaved)

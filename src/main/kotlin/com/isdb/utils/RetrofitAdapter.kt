@@ -3,7 +3,7 @@ package com.isdb.utils
 import com.isdb.config.SpotifyDetails.Companion.spotifyAuthApiUrl
 import com.isdb.config.SpotifyDetails.Companion.spotifyClientId
 import com.isdb.config.SpotifyDetails.Companion.spotifyClientSecret
-import com.isdb.config.SpotifyDetails.Companion.spotifyTrackApiUrl
+import com.isdb.config.SpotifyDetails.Companion.spotifySearchApiUrl
 import com.isdb.endpoints.SpotifyEndpoints
 import com.isdb.enums.Action
 import com.squareup.moshi.Moshi
@@ -31,7 +31,7 @@ class RetrofitAdapter {
       val httpClient = OkHttpClient.Builder().addInterceptor(intercept).build()
 
       val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(if (action == Action.AUTH) spotifyAuthApiUrl else spotifyTrackApiUrl)
+        .baseUrl(if (action == Action.AUTH) spotifyAuthApiUrl else spotifySearchApiUrl)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(httpClient)
         .build()

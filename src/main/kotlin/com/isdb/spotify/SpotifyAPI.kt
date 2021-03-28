@@ -1,7 +1,9 @@
 package com.isdb.spotify
 
+import com.isdb.endpoints.SpotifyEndpoints
 import com.isdb.endpoints.getToken
 import com.isdb.endpoints.getTrack
+import com.isdb.endpoints.getTracks
 import com.isdb.enums.Action
 import com.isdb.model.Authentications
 import com.isdb.model.SimpleTrack
@@ -15,10 +17,10 @@ class SpotifyAPI {
     return auth.body()
 ***REMOVED***
 
-  fun getUserTrack(track: String): List<SimpleTrack> {
+  fun getUserTracks(track: String): List<SimpleTrack> {
     val token = getAuthToken()?.accessToken ?: ""
-    val retrofitService = RetrofitAdapter.getRetrofit(action = Action.TRACK, token = token)
-    val tracks = getTrack(service = retrofitService, trackSearchValue = track, "track")
+    val retrofitService = RetrofitAdapter.getRetrofit(action = Action.SEARCH, token = token)
+    val tracks = getTracks(service = retrofitService, trackSearchValue = track, "track")
 
     return when {
       tracks.isSuccessful -> tracks.body()!!.items.tracksList
@@ -27,7 +29,14 @@ class SpotifyAPI {
   ***REMOVED***
 ***REMOVED***
 
-  fun getTrack(spotifyId: String): SimpleTrack {
-    TODO("Not yet implemented")
+  fun getUserTrack(spotifyId: String): SimpleTrack {
+    val token = getAuthToken()?.accessToken ?: ""
+    val retrofitService = RetrofitAdapter.getRetrofit(action = Action.TRACK, token = token)
+    val track = getTrack(service = retrofitService, trackSearchId= spotifyId)
+
+    return when {
+      track.isSuccessful -> track.body()!!.tracksList.first()
+      else -> SimpleTrack()
+  ***REMOVED***
 ***REMOVED***
 ***REMOVED***
