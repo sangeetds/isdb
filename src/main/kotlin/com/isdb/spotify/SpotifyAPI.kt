@@ -7,6 +7,7 @@ import com.isdb.enums.Action
 import com.isdb.model.Authentications
 import com.isdb.model.SimpleTrack
 import com.isdb.utils.RetrofitAdapter
+import mu.KotlinLogging
 
 class SpotifyAPI {
 
@@ -34,7 +35,7 @@ class SpotifyAPI {
     val track = getTrack(service = retrofitService, trackSearchId = spotifyId)
 
     return when {
-      track.isSuccessful -> track.body()!!.tracksList.first()
+      track.isSuccessful -> track.body()!!.tracks.first()
       else -> SimpleTrack()
   ***REMOVED***
 ***REMOVED***

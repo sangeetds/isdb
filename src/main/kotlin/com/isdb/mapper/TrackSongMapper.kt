@@ -9,7 +9,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 class TrackSongMapper {
 
 ***REMOVED***
-    private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     fun List<SimpleTrack>.toSongDTO(): List<SongDTO> = this.map { track ->
       SongDTO(

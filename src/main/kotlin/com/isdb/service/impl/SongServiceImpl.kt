@@ -36,7 +36,17 @@ class SongServiceImpl(@Autowired val songsRepository: SongsRepository) : SongSer
     val track = spotifyApi.getUserTrack(songDto.spotifyId)
     this.logger.info { "Found the following track $track with id: ${track.id***REMOVED***" ***REMOVED***
 
-    val songToBeSaved = Song(songDto.id, track.name)
+    val songToBeSaved = Song(
+      id = null,
+      name = track.name,
+      url = track.externalUrls,
+      album = track.album,
+      releaseDate = track.album.releaseDate,
+      userRatings = songDto.userRatings,
+      criticsRatings = songDto.criticsRatings,
+      votes = songDto.votes,
+      spotifyId = track.id,
+      )
     return this.songsRepository.save(songToBeSaved)
 ***REMOVED***
 ***REMOVED***

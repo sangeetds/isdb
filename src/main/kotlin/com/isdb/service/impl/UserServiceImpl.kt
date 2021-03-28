@@ -18,7 +18,7 @@ class UserServiceImpl(@Autowired private val userRepository: UserRepository) : U
     this.logger.info { "Registering user $newUser" ***REMOVED***
 
     for (user in users) {
-      if (user!! == newUser && user.email == newUser.email) {
+      if (user.username == newUser.username || user.email == newUser.email) {
 
         this.logger.info { "User already Exists" ***REMOVED***
         return ResponseEntity.badRequest().build()
@@ -35,10 +35,10 @@ class UserServiceImpl(@Autowired private val userRepository: UserRepository) : U
 
     for (other in users) {
       if (other!!.email == newUser.email && other.password == newUser.password) {
-        newUser.isLoggedIn = true
+        other.isLoggedIn = true
 
         this.logger.info { "User logged in" ***REMOVED***
-        return ResponseEntity.ok(this.userRepository.save(newUser))
+        return ResponseEntity.ok(this.userRepository.save(other))
     ***REMOVED***
   ***REMOVED***
 
@@ -51,11 +51,11 @@ class UserServiceImpl(@Autowired private val userRepository: UserRepository) : U
     this.logger.info { "Logging out user $user" ***REMOVED***
 
     for (otherUsers in users) {
-      if (otherUsers!! == user) {
-        user.isLoggedIn = false
+      if (otherUsers.email == user.email) {
+        otherUsers.isLoggedIn = false
 
-        this.logger.info { "Successfully registered" ***REMOVED***
-        return ResponseEntity.ok(this.userRepository.save(user))
+        this.logger.info { "Successfully logged out" ***REMOVED***
+        return ResponseEntity.ok(this.userRepository.save(otherUsers))
     ***REMOVED***
   ***REMOVED***
 

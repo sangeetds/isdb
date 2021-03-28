@@ -2,6 +2,7 @@ package com.isdb.endpoints
 
 import com.isdb.model.Authentications
 import com.isdb.model.Items
+import com.isdb.model.SearchTrack
 import com.isdb.model.Tracks
 import retrofit2.Call
 import retrofit2.Response
@@ -27,8 +28,8 @@ interface SpotifyEndpoints {
 
   @GET(value = "v1/tracks")
   fun getTrack(
-    @Query("id") searchType: String
-  ): Call<Items>
+    @Query("ids") searchType: String
+  ): Call<SearchTrack>
 ***REMOVED***
 
 fun getToken(service: SpotifyEndpoints): Response<Authentications> =
@@ -46,4 +47,4 @@ fun getTracks(
 fun getTrack(
   service: SpotifyEndpoints,
   trackSearchId: String
-): Response<Items> = service.getTrack(trackSearchId).execute()
+): Response<SearchTrack> = service.getTrack(trackSearchId).execute()
