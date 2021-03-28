@@ -2,7 +2,6 @@
 
 The IMDb for Songs. Work in progress!
 
-Hosted on heroku at
-https://dashboard.heroku.com/apps/pure-ridge-30175
+You can check the API documentation <a href="https://pure-ridge-30175.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/">here</a>
 
-Checkout the android app for the same: https://github.com/sangeetds/isdb-android-app
+Checkout the android app for the same <a href="https://github.com/sangeetds/isdb-android-app">here</a>
