@@ -3,7 +3,6 @@ package com.isdb.controller
 import com.isdb.dto.SongDTO
 import com.isdb.model.Song
 import com.isdb.service.SongService
-import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
@@ -18,7 +17,8 @@ class SongsController(@Autowired val songService: SongService) {
 
   @GetMapping("tracks")
   fun getSongs(
-    @Nullable @RequestParam("search") songName: String?): ResponseEntity<List<SongDTO>> =
+    @Nullable @RequestParam("search") songName: String?
+  ): ResponseEntity<List<SongDTO>> =
     ResponseEntity.ok().body(this.songService.getTracks(songName))
 
   @PostMapping("tracks")

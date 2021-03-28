@@ -31,7 +31,7 @@ class SpotifyAPI {
   fun getUserTrack(spotifyId: String): SimpleTrack {
     val token = getAuthToken()?.accessToken ?: ""
     val retrofitService = RetrofitAdapter.getRetrofit(action = Action.TRACK, token = token)
-    val track = getTrack(service = retrofitService, trackSearchId= spotifyId)
+    val track = getTrack(service = retrofitService, trackSearchId = spotifyId)
 
     return when {
       track.isSuccessful -> track.body()!!.tracksList.first()
