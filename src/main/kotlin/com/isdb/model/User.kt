@@ -3,7 +3,7 @@ package com.isdb.model
 import org.springframework.data.annotation.Id
 
 data class User(
-  @Id var id: Long = 0,
+  @Id var id: String?,
   var username: String = "",
   var password: String = "",
   var email: String = "",

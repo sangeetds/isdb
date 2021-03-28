@@ -26,4 +26,8 @@ class SpotifyAPI {
       else -> listOf()
   ***REMOVED***
 ***REMOVED***
+
+  fun getTrack(spotifyId: String): SimpleTrack {
+    TODO("Not yet implemented")
+***REMOVED***
 ***REMOVED***
