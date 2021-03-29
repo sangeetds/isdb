@@ -41,6 +41,7 @@ class SongServiceImpl(@Autowired val songRepository: SongRepository, @Autowired 
     val user = this.userService.getUser(userSongDetailsDTO.userId)
 
     user?.ratedSongIds?.add(userSongDetailsDTO.songId)
+    this.userService.updateUser(user!!)
 
     val songToBeSaved: Song
     when (track.isPresent) {
