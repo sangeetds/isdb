@@ -6,8 +6,9 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document
 data class User(
   @Id var id: String?,
-  var username: String = "",
+  val username: String = "",
   var password: String = "",
-  var email: String = "",
-  var isLoggedIn: Boolean = false
+  val email: String = "",
+  var isLoggedIn: Boolean = false,
+  val ratedSongIds: MutableList<String> = mutableListOf()
 )

@@ -2,6 +2,7 @@ package com.isdb.controller
 
 import com.isdb.dto.SongDTO
 import com.isdb.model.Song
+import com.isdb.model.UserSongDetailsDTO
 import com.isdb.service.SongService
 import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
@@ -23,9 +25,13 @@ class SongsController(@Autowired val songService: SongService) {
   ): ResponseEntity<List<SongDTO>> =
     ResponseEntity.ok().body(this.songService.getTracks(songName))
 
+  @GetMapping("users/songs/{id***REMOVED***")
+  fun getAllLikedSongs(@PathVariable("id") id: String): ResponseEntity<List<String>> =
+    this.songService.getLikedSongs(id)
+
   @PostMapping("tracks")
-  fun rateSong(@RequestBody songDto: SongDTO): Song =
-    this.songService.saveTrack(songDto)
+  fun rateSong(@RequestBody userSongDetailsDTO: UserSongDetailsDTO): Song =
+    this.songService.saveTrack(userSongDetailsDTO)
 
   @Hidden
   @DeleteMapping("tracks")
