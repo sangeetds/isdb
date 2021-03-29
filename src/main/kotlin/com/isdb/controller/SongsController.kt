@@ -3,9 +3,11 @@ package com.isdb.controller
 import com.isdb.dto.SongDTO
 import com.isdb.model.Song
 import com.isdb.service.SongService
+import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.lang.Nullable
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -24,4 +26,8 @@ class SongsController(@Autowired val songService: SongService) {
   @PostMapping("tracks")
   fun rateSong(@RequestBody songDto: SongDTO): Song =
     this.songService.saveTrack(songDto)
+
+  @Hidden
+  @DeleteMapping("tracks")
+  fun deleteRecords() = this.songService.deleteAllRecords()
 ***REMOVED***

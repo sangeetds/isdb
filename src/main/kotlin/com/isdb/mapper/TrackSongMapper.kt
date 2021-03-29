@@ -29,7 +29,10 @@ class TrackSongMapper {
         releaseDate = song.releaseDate,
         image = song.album.images,
         spotifyId = song.spotifyId,
-        url = song.url.spotify
+        url = song.url.spotify,
+        userRatings = song.userRatings,
+        criticsRatings = song.criticsRatings,
+        votes = song.votes
       )
   ***REMOVED***
 ***REMOVED***

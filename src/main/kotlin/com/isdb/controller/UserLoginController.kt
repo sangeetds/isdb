@@ -2,6 +2,7 @@ package com.isdb.controller
 
 import com.isdb.model.User
 import com.isdb.service.UserService
+import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -25,6 +26,7 @@ class UserLoginController
   fun logUserOut(@RequestBody user: User): ResponseEntity<User> =
     this.userService.logOutUser(user)
 
+  @Hidden
   @DeleteMapping("/users/all")
   fun deleteUsers() =
     this.userService.deleteAllUser()
