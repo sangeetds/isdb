@@ -25,7 +25,7 @@ class SongsController(@Autowired val songService: SongService) {
   ): ResponseEntity<List<SongDTO>> =
     ResponseEntity.ok().body(this.songService.getTracks(songName))
 
-  @GetMapping("users/songs/{id***REMOVED***")
+  @GetMapping("users/songs/{id}")
   fun getAllLikedSongs(@PathVariable("id") id: String): ResponseEntity<List<String>> =
     this.songService.getLikedSongs(id)
 
@@ -36,4 +36,4 @@ class SongsController(@Autowired val songService: SongService) {
   @Hidden
   @DeleteMapping("tracks")
   fun deleteRecords() = this.songService.deleteAllRecords()
-***REMOVED***
+}

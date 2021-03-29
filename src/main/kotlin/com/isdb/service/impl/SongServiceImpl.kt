@@ -18,43 +18,40 @@ import org.springframework.stereotype.Service
 class SongServiceImpl(@Autowired val songRepository: SongRepository, @Autowired val userService: UserService) : SongService {
 
   private val spotifyApi = SpotifyAPI()
-  private val logger = KotlinLogging.logger {***REMOVED***
+  private val logger = KotlinLogging.logger {}
 
   override fun getTracks(songName: String?): List<SongDTO> {
     songName?.let {
-      this.logger.info { "Fetching tracks for query $songName" ***REMOVED***
+      this.logger.info { "Fetching tracks for query $songName" }
       val trackList = spotifyApi.getUserTracks(songName).toSongDTO()
 
-      this.logger.info { "Returning tracks with names ${trackList.map { it.name ***REMOVED******REMOVED***" ***REMOVED***
+      this.logger.info { "Returning tracks with names ${trackList.map { it.name }}" }
       return trackList
-  ***REMOVED***
+    }
 
     val songDTOs = this.songRepository.findAll().getSongDTO()
-    this.logger.info { "Returning tracks with names ${songDTOs.map { it.name ***REMOVED******REMOVED******REMOVED***" ***REMOVED***
+    this.logger.info { "Returning tracks with names ${songDTOs.map { it.name }}}" }
 
     return songDTOs
-***REMOVED***
+  }
 
   override fun saveTrack(userSongDetailsDTO: UserSongDetailsDTO): Song {
-    this.logger.info { "Saving $userSongDetailsDTO with id: ${userSongDetailsDTO.songId***REMOVED***" ***REMOVED***
+    this.logger.info { "Saving $userSongDetailsDTO with id: ${userSongDetailsDTO.spotifyId}" }
     val track = this.songRepository.findById(userSongDetailsDTO.songId)
     val user = this.userService.getUser(userSongDetailsDTO.userId)
-
-    user?.ratedSongIds?.add(userSongDetailsDTO.songId)
-    this.userService.updateUser(user!!)
 
     val songToBeSaved: Song
     when (track.isPresent) {
       true -> {
-        this.logger.info { "Found the following track in database $track with id: ${track.get().id***REMOVED***" ***REMOVED***
+        this.logger.info { "Found the following track in database $track with id: ${track.get().id}" }
         songToBeSaved = track.get()
         songToBeSaved.userRatings = userSongDetailsDTO.userRatings
         songToBeSaved.votes = userSongDetailsDTO.votes
-    ***REMOVED***
+      }
       else -> {
-        this.logger.info { "Fetching the song from Spotify" ***REMOVED***
+        this.logger.info { "Fetching the song from Spotify" }
         val trackFromSpotify = this.spotifyApi.getUserTrack(userSongDetailsDTO.spotifyId)
-        this.logger.info { "Fetching successful, found track $trackFromSpotify" ***REMOVED***
+        this.logger.info { "Fetching successful, found track $trackFromSpotify" }
 
         songToBeSaved = Song(
           id = null,
@@ -67,15 +64,20 @@ class SongServiceImpl(@Autowired val songRepository: SongRepository, @Autowired 
           votes = userSongDetailsDTO.votes,
           spotifyId = trackFromSpotify.id,
         )
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
 
-    this.logger.info { "Saving the following song in database $songToBeSaved" ***REMOVED***
-    return songRepository.save(songToBeSaved)
-***REMOVED***
+    this.logger.info { "Saving the following song in database $songToBeSaved" }
+    val savedSong = songRepository.save(songToBeSaved)
+
+    savedSong.id?.let { user?.ratedSongIds?.add(it) }
+    this.userService.updateUser(user!!)
+
+    return savedSong
+  }
 
   override fun deleteAllRecords() = this.songRepository.deleteAll()
 
   override fun getLikedSongs(id: String): ResponseEntity<List<String>> =
     this.userService.getLikedSongs(id)
-***REMOVED***
+}

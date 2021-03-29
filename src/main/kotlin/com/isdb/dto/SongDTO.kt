@@ -28,7 +28,7 @@ data class SongDTO(
     if (url != other.url) return false
 
     return true
-***REMOVED***
+  }
 
   override fun hashCode(): Int {
     var result = name.hashCode()
@@ -38,5 +38,5 @@ data class SongDTO(
     result = 31 * result + spotifyId.hashCode()
     result = 31 * result + url.hashCode()
     return result
-***REMOVED***
-***REMOVED***
+  }
+}

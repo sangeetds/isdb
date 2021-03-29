@@ -15,7 +15,7 @@ class SpotifyAPI {
     val retrofitService = RetrofitAdapter.getRetrofit(action = Action.AUTH)
     val auth = getToken(retrofitService)
     return auth.body()
-***REMOVED***
+  }
 
   fun getUserTracks(track: String): List<SimpleTrack> {
     val token = getAuthToken()?.accessToken ?: ""
@@ -26,8 +26,8 @@ class SpotifyAPI {
       tracks.isSuccessful -> tracks.body()!!.items.tracksList
       tracks.errorBody() != null -> listOf()
       else -> listOf()
-  ***REMOVED***
-***REMOVED***
+    }
+  }
 
   fun getUserTrack(spotifyId: String): SimpleTrack {
     val token = getAuthToken()?.accessToken ?: ""
@@ -37,6 +37,6 @@ class SpotifyAPI {
     return when {
       track.isSuccessful -> track.body()!!.tracks.first()
       else -> SimpleTrack()
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

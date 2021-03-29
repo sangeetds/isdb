@@ -8,7 +8,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class TrackSongMapper {
 
-***REMOVED***
+  companion object {
 
     fun List<SimpleTrack>.toSongDTO(): List<SongDTO> = this.map { track ->
       SongDTO(
@@ -19,7 +19,7 @@ class TrackSongMapper {
         spotifyId = track.id,
         url = track.externalUrls.spotify
       )
-  ***REMOVED***
+    }
 
     fun List<Song>.getSongDTO(): List<SongDTO> = this.map { song ->
       SongDTO(
@@ -34,6 +34,6 @@ class TrackSongMapper {
         criticsRatings = song.criticsRatings,
         votes = song.votes
       )
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

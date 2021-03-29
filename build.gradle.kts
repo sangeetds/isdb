@@ -9,7 +9,7 @@ plugins {
     kotlin("plugin.spring") version "1.4.30"
     kotlin("plugin.jpa") version "1.4.30"
     kotlin("kapt") version "1.4.10"
-***REMOVED***
+}
 
 group = "com.isdb"
 version = "0.0.1-SNAPSHOT"
@@ -17,7 +17,7 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
-***REMOVED***
+}
 
 dependencies {
     val moshiVersion = "1.11.0"
@@ -64,20 +64,20 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-***REMOVED***
+}
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 tasks.withType<Test> {
     useJUnitPlatform()
-***REMOVED***
+}
 
 tasks.withType<BootJar> {
 	mainClass.set("com.isdb.IsdbBackendApplicationKt")
 	enabled = true
-***REMOVED***
+}

@@ -30,4 +30,4 @@ class UserLoginController
   @DeleteMapping("/users/all")
   fun deleteUsers() =
     this.userService.deleteAllUser()
-***REMOVED***
+}

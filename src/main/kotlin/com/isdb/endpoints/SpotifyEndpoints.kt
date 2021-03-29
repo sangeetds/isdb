@@ -30,7 +30,7 @@ interface SpotifyEndpoints {
   fun getTrack(
     @Query("ids") searchType: String
   ): Call<SearchTrack>
-***REMOVED***
+}
 
 fun getToken(service: SpotifyEndpoints): Response<Authentications> =
   service.getAuthToken().execute()

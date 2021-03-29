@@ -14,7 +14,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RetrofitAdapter {
 
-***REMOVED***
+  companion object {
 
     fun getRetrofit(
       action: Action,
@@ -37,6 +37,6 @@ class RetrofitAdapter {
         .build()
 
       return retrofit.create(SpotifyEndpoints::class.java)
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

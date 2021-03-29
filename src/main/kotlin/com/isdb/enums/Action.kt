@@ -4,4 +4,4 @@ enum class Action {
   AUTH,
   SEARCH,
   TRACK
-***REMOVED***
+}

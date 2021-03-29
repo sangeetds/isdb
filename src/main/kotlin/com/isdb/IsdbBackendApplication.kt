@@ -8,4 +8,4 @@ class IsdbBackendApplication
 
 fun main(args: Array<String>) {
   runApplication<IsdbBackendApplication>(*args)
-***REMOVED***
+}

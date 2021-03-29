@@ -19,5 +19,5 @@ class BasicInterceptor(
       .header("Authorization", this.credentials ?: this.token).build()
 
     return chain.proceed(authenticatedRequest)
-***REMOVED***
-***REMOVED***
+  }
+}
