@@ -15,7 +15,10 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class SongServiceImpl(@Autowired val songRepository: SongRepository, @Autowired val userService: UserService) : SongService {
+class SongServiceImpl(
+  @Autowired val songRepository: SongRepository,
+  @Autowired val userService: UserService
+) : SongService {
 
   private val spotifyApi = SpotifyAPI()
   private val logger = KotlinLogging.logger {}

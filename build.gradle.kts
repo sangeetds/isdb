@@ -20,6 +20,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.junit.jupiter:junit-jupiter:5.4.2")
+    implementation("org.junit.jupiter:junit-jupiter:5.4.2")
     val moshiVersion = "1.11.0"
     val retrofitVersion = "2.9.0"
 
@@ -32,19 +34,10 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
     implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
     implementation("com.squareup.moshi:moshi:$moshiVersion")
-
-    //retrofit and moshi
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
-    implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
-    implementation("com.squareup.moshi:moshi:$moshiVersion")
-
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
 
     // kotlin coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
 
     // spring web
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -61,6 +54,11 @@ dependencies {
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    // Spring Rest Client Test
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation("org.mockito:mockito-inline:2.8.47")
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
