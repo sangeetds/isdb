@@ -4,14 +4,13 @@ import com.isdb.dto.SongDTO
 import com.isdb.mapper.TrackSongMapper.Companion.getSongDTO
 import com.isdb.mapper.TrackSongMapper.Companion.toSongDTO
 import com.isdb.model.Song
-import com.isdb.model.UserSongDetailsDTO
+import com.isdb.dto.UserSongDetailsDTO
 import com.isdb.repository.SongRepository
 import com.isdb.service.SongService
 import com.isdb.service.UserService
 import com.isdb.spotify.SpotifyAPI
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service

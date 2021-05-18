@@ -50,8 +50,7 @@ class UserServiceImplTest {
 
   @Test
   fun `test registerUser when user already exists`() {
-    val newUser =
-      User(id = "id", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
+    val newUser = user()
     val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
     val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
     val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
@@ -66,14 +65,116 @@ class UserServiceImplTest {
 
   @Test
   fun `test registerUser when user does not exists`() {
-    val newUser =
-      User(id = "id", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
+    val newUser = user()
 
-    every { userRepository.findAll() } returns listOf()
+    every { userRepository.findAll() } returns listOf(
+      User(id = "5", username = "nae", email = "mail")
+    )
     every { userRepository.save(newUser) } returns newUser
 
     val registerUser = userService.registerUser(newUser)
     assertThat(registerUser).isNotNull()
     assertThat(registerUser).isEqualTo(newUser)
   }
+
+  @Test
+  fun `test loginUser when user does not exists`() {
+    val newUser = user()
+
+    every { userRepository.findAll() } returns listOf(
+      User(id = "5", username = "nae", email = "mail")
+    )
+
+    val loginUser = userService.loginUser(newUser)
+    assertThat(loginUser).isNull()
+  }
+
+  @Test
+  fun `test loginUser when user does exists`() {
+    val newUser = user()
+
+    val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
+    val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
+    val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
+
+    every { userRepository.findAll() } returns listOf(
+      newUser, sampleUser1, sampleUser2, sampleUser3
+    )
+    every { userRepository.save(newUser) } returns newUser
+
+    val loginUser = userService.loginUser(newUser)
+    assertThat(loginUser).isNotNull()
+    assertThat(loginUser).isEqualTo(newUser)
+  }
+
+  @Test
+  fun `test logOutUser when user does not exists`() {
+    val newUser = user()
+
+    every { userRepository.findAll() } returns listOf(
+      User(id = "5", username = "nae", email = "mail")
+    )
+
+    val loginUser = userService.logOutUser(newUser)
+    assertThat(loginUser).isNull()
+  }
+
+  @Test
+  fun `test logoutUser when user does exists`() {
+    val newUser = user()
+
+    val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
+    val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
+    val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
+
+    every { userRepository.findAll() } returns listOf(
+      newUser, sampleUser1, sampleUser2, sampleUser3
+    )
+    every { userRepository.save(newUser) } returns newUser
+
+    val loginUser = userService.logOutUser(newUser)
+    assertThat(loginUser).isNotNull()
+    assertThat(loginUser).isEqualTo(newUser)
+  }
+
+  @Test
+  fun `test deleteUser`() {
+    justRun { userRepository.deleteAll() }
+
+    userService.deleteAllUser()
+
+    verify { userRepository.deleteAll() }
+  }
+
+  @Test
+  fun `test getLikedSongs when user is present`() {
+    val id = "id"
+    val user =
+      User(
+        id = "id", username = "sangeet", password = "any", email = "sangeet@sangeet.me",
+        ratedSongIds = mutableListOf("songId1", "songId2", "songid3")
+      )
+
+    every { userRepository.findById(id) } returns Optional.of(user)
+
+    val likedSongs = userService.getLikedSongs(id)
+    assertThat(likedSongs).isNotNull()
+    assertThat(likedSongs)
+      .containsExactly("songId1", "songId2", "songid3")
+      .inOrder()
+  }
+
+  @Test
+  fun `test getLikedSongs when no user found`() {
+    val id = "id"
+
+    every { userRepository.findById(id) } returns Optional.empty()
+
+    val likedSongs = userService.getLikedSongs(id)
+    assertThat(likedSongs).isNotNull()
+    assertThat(likedSongs).isEmpty()
+  }
+
+  private fun user() =
+    User(id = "id", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
 }

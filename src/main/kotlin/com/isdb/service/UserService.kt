@@ -1,7 +1,6 @@
 package com.isdb.service
 
 import com.isdb.model.User
-import org.springframework.http.ResponseEntity
 
 interface UserService {
 

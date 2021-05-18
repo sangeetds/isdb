@@ -2,7 +2,7 @@ package com.isdb.controller
 
 import com.isdb.dto.SongDTO
 import com.isdb.model.Song
-import com.isdb.model.UserSongDetailsDTO
+import com.isdb.dto.UserSongDetailsDTO
 import com.isdb.service.SongService
 import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.beans.factory.annotation.Autowired

@@ -5,7 +5,6 @@ import com.isdb.repository.UserRepository
 import com.isdb.service.UserService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service

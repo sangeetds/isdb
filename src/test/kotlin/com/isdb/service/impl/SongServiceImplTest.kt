@@ -6,7 +6,7 @@ import com.isdb.model.Album
 import com.isdb.model.Song
 import com.isdb.model.Url
 import com.isdb.model.User
-import com.isdb.model.UserSongDetailsDTO
+import com.isdb.dto.UserSongDetailsDTO
 import com.isdb.repository.SongRepository
 import com.isdb.service.UserService
 import io.mockk.every

@@ -2,8 +2,7 @@ package com.isdb.service
 
 import com.isdb.dto.SongDTO
 import com.isdb.model.Song
-import com.isdb.model.UserSongDetailsDTO
-import org.springframework.http.ResponseEntity
+import com.isdb.dto.UserSongDetailsDTO
 
 interface SongService {
 
