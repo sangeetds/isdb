@@ -52,16 +52,15 @@ dependencies {
     // Kotlin logging
     implementation("io.github.microutils:kotlin-logging:1.12.5")
 
-    // Use the Kotlin test library.
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-
     // Spring Rest Client Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
-    testImplementation("org.mockito:mockito-inline:2.8.47")
+    testImplementation("io.mockk:mockk:1.11.0")
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    // Truth testing lib
+    testImplementation("com.google.truth:truth:1.1.2")
 }
 
 tasks.withType<KotlinCompile> {

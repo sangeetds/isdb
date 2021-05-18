@@ -17,5 +17,5 @@ interface UserService {
 
   fun deleteAllUser()
 
-  fun getLikedSongs(id: String): ResponseEntity<List<String>>
+  fun getLikedSongs(id: String): List<String>
 }

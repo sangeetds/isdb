@@ -4,11 +4,12 @@ import com.isdb.endpoints.getToken
 import com.isdb.endpoints.getTrack
 import com.isdb.endpoints.getTracks
 import com.isdb.enums.Action
-import com.isdb.model.Authentications
 import com.isdb.model.SimpleTrack
 import com.isdb.utils.RetrofitAdapter
 import mu.KotlinLogging
+import org.springframework.stereotype.Service
 
+@Service
 class SpotifyAPI {
 
   private val logger = KotlinLogging.logger {}
@@ -30,7 +31,7 @@ class SpotifyAPI {
     }
   }
 
-  fun getUserTracks(track: String): List<SimpleTrack> {
+  fun getTracksWithQuery(track: String): List<SimpleTrack> {
     val token = getAuthToken()
     val retrofitService = RetrofitAdapter.getRetrofit(action = Action.SEARCH, token = token)
 

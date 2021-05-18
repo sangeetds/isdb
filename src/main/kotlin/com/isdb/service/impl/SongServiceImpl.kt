@@ -20,13 +20,13 @@ class SongServiceImpl(
   @Autowired val userService: UserService
 ) : SongService {
 
-  private val spotifyApi = SpotifyAPI()
+  private val spotifyApi = SpotifyAPI();
   private val logger = KotlinLogging.logger {}
 
   override fun getTracks(songName: String?): List<SongDTO> {
-    songName?.let {
+    songName?.let { name ->
       this.logger.info { "Fetching tracks for query $songName" }
-      val trackList = spotifyApi.getUserTracks(songName).toSongDTO()
+      val trackList = this.spotifyApi.getTracksWithQuery(name).toSongDTO()
 
       this.logger.info { "Returning tracks with names ${trackList.map { it.name }}" }
       return trackList
@@ -81,6 +81,6 @@ class SongServiceImpl(
 
   override fun deleteAllRecords() = this.songRepository.deleteAll()
 
-  override fun getLikedSongs(id: String): ResponseEntity<List<String>> =
+  override fun getLikedSongs(id: String): List<String> =
     this.userService.getLikedSongs(id)
 }

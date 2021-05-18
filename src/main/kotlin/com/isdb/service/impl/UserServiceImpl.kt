@@ -84,16 +84,16 @@ class UserServiceImpl(@Autowired private val userRepository: UserRepository) : U
   override fun deleteAllUser() =
     this.userRepository.deleteAll()
 
-  override fun getLikedSongs(id: String): ResponseEntity<List<String>> {
+  override fun getLikedSongs(id: String): List<String> {
     this.logger.info { "Find liked songs by userId $id" }
     val user = this.userRepository.findById(id)
 
     if (user.isPresent) {
       this.logger.info { "Found user $user" }
-      return ResponseEntity.ok(user.get().ratedSongIds)
+      return user.get().ratedSongIds
     }
 
     this.logger.info { "No user with id $id found." }
-    return ResponseEntity.ok(listOf())
+    return listOf()
   }
 }
