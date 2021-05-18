@@ -12,6 +12,7 @@ import com.isdb.service.UserService
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.Test
 import java.util.Optional
 
@@ -23,6 +24,7 @@ class SongServiceImplTest {
 
   @Test
   fun `test getTracks when songName is not passed and no data stored`() {
+    every { songRepository.findAll() } returns listOf()
     val tracks = songService.getTracks(null)
     assertThat(tracks).isEmpty()
   }
@@ -76,6 +78,13 @@ class SongServiceImplTest {
     val likedSongs = songService.getLikedSongs(id)
     assertThat(likedSongs).isNotEmpty()
     assertThat(likedSongs).isEqualTo(tracks)
+  }
+
+  @Test
+  fun `test deleteSongs`() {
+    justRun { songRepository.deleteAll() }
+    songService.deleteAllRecords()
+    verify { songRepository.deleteAll() }
   }
 
   companion object {
