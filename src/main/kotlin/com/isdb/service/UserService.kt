@@ -9,11 +9,11 @@ interface UserService {
 
   fun updateUser(user: User)
 
-  fun registerUser(newUser: User): ResponseEntity<User>
+  fun registerUser(newUser: User): User?
 
-  fun loginUser(newUser: User): ResponseEntity<User>
+  fun loginUser(newUser: User): User?
 
-  fun logOutUser(user: User): ResponseEntity<User>
+  fun logOutUser(user: User): User?
 
   fun deleteAllUser()
 

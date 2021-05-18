@@ -31,54 +31,54 @@ class UserServiceImpl(@Autowired private val userRepository: UserRepository) : U
     this.userRepository.save(user)
   }
 
-  override fun registerUser(newUser: User): ResponseEntity<User> {
+  override fun registerUser(newUser: User): User? {
     val users = this.userRepository.findAll()
     this.logger.info { "Registering user $newUser" }
 
-    for (user in users) {
+    users.forEach { user ->
       if (user.username == newUser.username || user.email == newUser.email) {
 
         this.logger.info { "User already Exists" }
-        return ResponseEntity.badRequest().build()
+        return null
       }
     }
 
     this.logger.info { "Successfully registered" }
-    return ResponseEntity.ok(this.userRepository.save(newUser))
+    return this.userRepository.save(newUser)
   }
 
-  override fun loginUser(newUser: User): ResponseEntity<User> {
+  override fun loginUser(newUser: User): User? {
     val users = this.userRepository.findAll()
     this.logger.info { "Logging-in user $newUser" }
 
-    for (other in users) {
-      if (other!!.email == newUser.email && other.password == newUser.password) {
-        other.isLoggedIn = true
+    users.forEach { registeredUsers ->
+      if (registeredUsers!!.email == newUser.email && registeredUsers.password == newUser.password) {
+        registeredUsers.isLoggedIn = true
 
         this.logger.info { "User logged in" }
-        return ResponseEntity.ok(this.userRepository.save(other))
+        return this.userRepository.save(registeredUsers)
       }
     }
 
     this.logger.info { "User not registered" }
-    return ResponseEntity.notFound().build()
+    return null
   }
 
-  override fun logOutUser(user: User): ResponseEntity<User> {
+  override fun logOutUser(user: User): User? {
     val users = this.userRepository.findAll()
     this.logger.info { "Logging out user $user" }
 
-    for (otherUsers in users) {
-      if (otherUsers.email == user.email) {
-        otherUsers.isLoggedIn = false
+    users.forEach { loggedInUsers ->
+      if (loggedInUsers.email == user.email) {
+        loggedInUsers.isLoggedIn = false
 
         this.logger.info { "Successfully logged out" }
-        return ResponseEntity.ok(this.userRepository.save(otherUsers))
+        return this.userRepository.save(loggedInUsers)
       }
     }
 
     this.logger.info { "User not found" }
-    return ResponseEntity.notFound().build()
+    return null
   }
 
   override fun deleteAllUser() =
