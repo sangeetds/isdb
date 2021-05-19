@@ -51,9 +51,6 @@ class UserServiceImplTest {
   @Test
   fun `test registerUser when user already exists`() {
     val newUser = user()
-    val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
-    val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
-    val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
 
     every { userRepository.findAll() } returns listOf(
       newUser, sampleUser1, sampleUser2, sampleUser3
@@ -93,10 +90,6 @@ class UserServiceImplTest {
   fun `test loginUser when user does exists`() {
     val newUser = user()
 
-    val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
-    val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
-    val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
-
     every { userRepository.findAll() } returns listOf(
       newUser, sampleUser1, sampleUser2, sampleUser3
     )
@@ -123,10 +116,6 @@ class UserServiceImplTest {
   fun `test logoutUser when user does exists`() {
     val newUser = user()
 
-    val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
-    val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
-    val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
-
     every { userRepository.findAll() } returns listOf(
       newUser, sampleUser1, sampleUser2, sampleUser3
     )
@@ -152,7 +141,7 @@ class UserServiceImplTest {
     val user =
       User(
         id = "id", username = "sangeet", password = "any", email = "sangeet@sangeet.me",
-        ratedSongIds = mutableListOf("songId1", "songId2", "songid3")
+        ratedSongIds = mutableListOf("songId1", "songId2", "songId3")
       )
 
     every { userRepository.findById(id) } returns Optional.of(user)
@@ -160,7 +149,7 @@ class UserServiceImplTest {
     val likedSongs = userService.getLikedSongs(id)
     assertThat(likedSongs).isNotNull()
     assertThat(likedSongs)
-      .containsExactly("songId1", "songId2", "songid3")
+      .containsExactly("songId1", "songId2", "songId3")
       .inOrder()
   }
 
@@ -188,6 +177,10 @@ class UserServiceImplTest {
   }
 
   companion object {
-    fun user() = User(id = "userID", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
+    val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
+    val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
+    val sampleUser3 = User(id = "id3", username = "sampleName3", email = "sampleMail3@mail.co")
+    fun user() =
+      User(id = "userID", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
   }
 }

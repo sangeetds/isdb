@@ -77,7 +77,7 @@ class SongsControllerTest {
       .expectStatus().is2xxSuccessful
       .expectBody()
       .jsonPath("$.id").isEqualTo(song.id!!.toString())
-      .jsonPath("$.userRatings").isEqualTo(song.userRatings!!.toString())
+      .jsonPath("$.userRatings").isEqualTo(song.userRatings.toString())
       .jsonPath("$.criticsRatings").isEqualTo(song.criticsRatings.toString())
       .jsonPath("$.votes").isEqualTo(song.votes.toString())
   }

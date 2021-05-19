@@ -1,5 +1,6 @@
 package com.isdb.model
 
+import com.squareup.moshi.Json
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 

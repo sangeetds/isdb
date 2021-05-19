@@ -2,7 +2,6 @@ package com.isdb.service.impl
 
 import com.google.common.truth.Truth.assertThat
 import com.isdb.mapper.TrackSongMapper.Companion.getSongDTO
-import com.isdb.model.Album
 import com.isdb.model.Song
 import com.isdb.model.Url
 import com.isdb.model.User

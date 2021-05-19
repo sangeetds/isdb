@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("users")
-class UserLoginController(@Autowired private val userService: UserService) {
+class UserController(@Autowired private val userService: UserService) {
 
   @PostMapping("/register")
   fun registerUser(@RequestBody newUser: User): ResponseEntity<User> {
@@ -47,7 +47,7 @@ class UserLoginController(@Autowired private val userService: UserService) {
       return ResponseEntity.ok(logOutUser)
     }
 
-    return ResponseEntity.badRequest().build()
+    return ResponseEntity.notFound().build()
   }
 
   @Hidden
