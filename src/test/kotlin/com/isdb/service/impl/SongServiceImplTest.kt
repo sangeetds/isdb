@@ -69,18 +69,6 @@ class SongServiceImplTest {
   }
 
   @Test
-  fun `test getLikedSongs returns liked songs of user`() {
-    val id = "userId"
-    val tracks = listOf("trackId1", "trackId2")
-
-    every { userService.getLikedSongs(id) } returns tracks
-
-    val likedSongs = songService.getLikedSongs(id)
-    assertThat(likedSongs).isNotEmpty()
-    assertThat(likedSongs).isEqualTo(tracks)
-  }
-
-  @Test
   fun `test deleteSongs`() {
     justRun { songRepository.deleteAll() }
     songService.deleteAllRecords()
@@ -92,9 +80,10 @@ class SongServiceImplTest {
       id = "1",
       name = "",
       url = Url(),
-      album = Album(),
-      releaseDate = "", userRatings = 0.0,
-      criticsRatings = 0.0, votes = 0,
+      releaseDate = "",
+      userRatings = 0.0,
+      criticsRatings = 0.0,
+      votes = 0,
       spotifyId = ""
     )
   }

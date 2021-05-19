@@ -8,7 +8,7 @@ interface SongService {
 
   fun getTracks(songName: String?): List<SongDTO>
 
-  fun saveTrack(userSongDetailsDTO: UserSongDetailsDTO): Song
+  fun saveTrack(userSongDetailsDTO: UserSongDetailsDTO): Song?
 
   fun deleteAllRecords()
 }

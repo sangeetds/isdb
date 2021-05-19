@@ -175,6 +175,19 @@ class UserServiceImplTest {
     assertThat(likedSongs).isEmpty()
   }
 
-  private fun user() =
-    User(id = "id", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
+  @Test
+  fun `test getLikedSongs returns liked songs of user`() {
+    val id = "userId"
+    val tracks = listOf("trackId1", "trackId2")
+
+    every { userService.getLikedSongs(id) } returns tracks
+
+    val likedSongs = userService.getLikedSongs(id)
+    assertThat(likedSongs).isNotEmpty()
+    assertThat(likedSongs).isEqualTo(tracks)
+  }
+
+  companion object {
+    fun user() = User(id = "userID", username = "sangeet", password = "any", email = "sangeet@sangeet.me")
+  }
 }

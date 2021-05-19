@@ -51,3 +51,4 @@ src/main/resources
 
 src/main/resources
 /src/main/resources/
+/src/test/resources/application-test.properties

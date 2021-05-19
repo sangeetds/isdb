@@ -28,8 +28,15 @@ class SongsController(@Autowired val songService: SongService) {
     ResponseEntity.ok().body(this.songService.getTracks(songName))
 
   @PostMapping
-  fun rateSong(@RequestBody userSongDetailsDTO: UserSongDetailsDTO): ResponseEntity<Song> =
-    ResponseEntity.ok().body(this.songService.saveTrack(userSongDetailsDTO))
+  fun rateSong(@RequestBody userSongDetailsDTO: UserSongDetailsDTO): ResponseEntity<Song> {
+    val saveTrack = this.songService.saveTrack(userSongDetailsDTO)
+
+    saveTrack?.let {
+      return ResponseEntity.ok().body(saveTrack)
+    }
+
+    return ResponseEntity.badRequest().build()
+  }
 
   @Hidden
   @DeleteMapping
