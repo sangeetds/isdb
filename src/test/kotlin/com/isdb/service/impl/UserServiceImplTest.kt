@@ -164,18 +164,6 @@ class UserServiceImplTest {
     assertThat(likedSongs).isEmpty()
   }
 
-  @Test
-  fun `test getLikedSongs returns liked songs of user`() {
-    val id = "userId"
-    val tracks = listOf("trackId1", "trackId2")
-
-    every { userService.getLikedSongs(id) } returns tracks
-
-    val likedSongs = userService.getLikedSongs(id)
-    assertThat(likedSongs).isNotEmpty()
-    assertThat(likedSongs).isEqualTo(tracks)
-  }
-
   companion object {
     val sampleUser1 = User(id = "id2", username = "sampleName1", email = "sampleMail1@mail.co")
     val sampleUser2 = User(id = "id2", username = "sampleName2", email = "sampleMail2@mail.co")
