@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.4.2")
-    implementation("org.junit.jupiter:junit-jupiter:5.4.2")
+    // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
+    // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
     val moshiVersion = "1.11.0"
     val retrofitVersion = "2.9.0"
 
@@ -54,6 +54,9 @@ dependencies {
 
     // Spring Rest Client Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-webflux")
+
+    // Kotlin Mocking
     testImplementation("io.mockk:mockk:1.11.0")
 
     // Use the Kotlin JUnit integration.

@@ -13,27 +13,25 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@RequestMapping("tracks")
 class SongsController(@Autowired val songService: SongService) {
 
-  @GetMapping("tracks")
+  @GetMapping
   fun getSongs(
     @Nullable @RequestParam("search") songName: String?
   ): ResponseEntity<List<SongDTO>> =
     ResponseEntity.ok().body(this.songService.getTracks(songName))
 
-  @GetMapping("users/songs/{id}")
-  fun getAllLikedSongs(@PathVariable("id") id: String): ResponseEntity<List<String>> =
-    ResponseEntity.ok().body(this.songService.getLikedSongs(id))
-
-  @PostMapping("tracks")
+  @PostMapping
   fun rateSong(@RequestBody userSongDetailsDTO: UserSongDetailsDTO): ResponseEntity<Song> =
     ResponseEntity.ok().body(this.songService.saveTrack(userSongDetailsDTO))
 
   @Hidden
-  @DeleteMapping("tracks")
+  @DeleteMapping
   fun deleteRecords() = this.songService.deleteAllRecords()
 }

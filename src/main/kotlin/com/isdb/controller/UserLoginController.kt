@@ -6,15 +6,18 @@ import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class UserLoginController
-(@Autowired private val userService: UserService) {
+@RequestMapping("users")
+class UserLoginController(@Autowired private val userService: UserService) {
 
-  @PostMapping("/users/register")
+  @PostMapping("/register")
   fun registerUser(@RequestBody newUser: User): ResponseEntity<User> {
     val registerUser = this.userService.registerUser(newUser)
 
@@ -25,7 +28,7 @@ class UserLoginController
     return ResponseEntity.badRequest().build()
   }
 
-  @PostMapping("/users/login")
+  @PostMapping("/login")
   fun loginUser(@RequestBody user: User): ResponseEntity<User> {
     val loginUser = this.userService.loginUser(user)
 
@@ -36,7 +39,7 @@ class UserLoginController
     return ResponseEntity.notFound().build()
   }
 
-  @PostMapping("/users/logout")
+  @PostMapping("/logout")
   fun logUserOut(@RequestBody user: User): ResponseEntity<User> {
     val logOutUser = this.userService.logOutUser(user)
 
@@ -48,7 +51,11 @@ class UserLoginController
   }
 
   @Hidden
-  @DeleteMapping("/users/all")
+  @DeleteMapping("/all")
   fun deleteUsers() =
     this.userService.deleteAllUser()
+
+  @GetMapping("/songs/{id}")
+  fun getAllLikedSongs(@PathVariable("id") id: String): ResponseEntity<List<String>> =
+    ResponseEntity.ok().body(this.userService.getLikedSongs(id))
 }

@@ -11,6 +11,4 @@ interface SongService {
   fun saveTrack(userSongDetailsDTO: UserSongDetailsDTO): Song
 
   fun deleteAllRecords()
-
-  fun getLikedSongs(id: String): List<String>
 }

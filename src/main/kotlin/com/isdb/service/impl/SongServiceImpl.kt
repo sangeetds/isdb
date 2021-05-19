@@ -79,7 +79,4 @@ class SongServiceImpl(
   }
 
   override fun deleteAllRecords() = this.songRepository.deleteAll()
-
-  override fun getLikedSongs(id: String): List<String> =
-    this.userService.getLikedSongs(id)
 }
