@@ -47,7 +47,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     // spring API docs
-    implementation("org.springdoc:springdoc-openapi-ui:1.5.6")
+    implementation("org.springdoc:springdoc-openapi-ui:1.5.9")
 
     // Kotlin logging
     implementation("io.github.microutils:kotlin-logging:1.12.5")
