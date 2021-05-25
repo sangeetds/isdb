@@ -22,7 +22,7 @@ repositories {
 dependencies {
     // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
     // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
-    val moshiVersion = "1.11.0"
+    val moshiVersion = "1.12.0"
     val retrofitVersion = "2.9.0"
 
     // kotlin
