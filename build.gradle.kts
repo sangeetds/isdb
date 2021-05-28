@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.springframework.boot") version "2.4.3"
+    id("org.springframework.boot") version "2.5.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
     kotlin("jvm") version "1.4.30"
@@ -22,7 +22,7 @@ repositories {
 dependencies {
     // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
     // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
-    val moshiVersion = "1.11.0"
+    val moshiVersion = "1.12.0"
     val retrofitVersion = "2.9.0"
 
     // kotlin
@@ -47,7 +47,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     // spring API docs
-    implementation("org.springdoc:springdoc-openapi-ui:1.5.6")
+    implementation("org.springdoc:springdoc-openapi-ui:1.5.9")
 
     // Kotlin logging
     implementation("io.github.microutils:kotlin-logging:1.12.5")
@@ -63,7 +63,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
     // Truth testing lib
-    testImplementation("com.google.truth:truth:1.1.2")
+    testImplementation("com.google.truth:truth:1.1.3")
 }
 
 tasks.withType<KotlinCompile> {
