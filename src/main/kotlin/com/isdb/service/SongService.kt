@@ -6,7 +6,7 @@ import com.isdb.dto.UserSongDetailsDTO
 
 interface SongService {
 
-  fun getTracks(songName: String?): List<SongDTO>
+  fun getTracks(songName: String?, userId: String): List<SongDTO>
 
   fun saveTrack(userSongDetailsDTO: UserSongDetailsDTO): Song?
 

@@ -12,7 +12,8 @@ data class SongDTO(
   val criticsRatings: Double = 0.0,
   val votes: Int = 0,
   val spotifyId: String = "",
-  val url: String = ""
+  val url: String = "",
+  val isUserRated: Boolean = false
 ) {
   override fun equals(other: Any?): Boolean {
     if (this === other) return true

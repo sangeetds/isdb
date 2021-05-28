@@ -46,7 +46,7 @@ class SongsControllerTest {
     val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     val jsonAdapter: JsonAdapter<List<SongDTO>> =
       moshi.adapter(Types.newParameterizedType(List::class.java, SongDTO::class.java))
-    val json = jsonAdapter.toJson(listOf(song).getSongDTO())
+    val json = jsonAdapter.toJson(listOf(song).getSongDTO(user?.id ?: ""))
 
     webTestClient.get().uri("/tracks/")
       .exchange()

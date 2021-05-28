@@ -36,7 +36,7 @@ class SongServiceImplTest {
 
     val tracks = songService.getTracks(null)
     assertThat(tracks).isNotEmpty()
-    assertThat(tracks).isEqualTo(songs.getSongDTO())
+    assertThat(tracks).isEqualTo(songs.getSongDTO(user?.id ?: ""))
   }
 
   @Test

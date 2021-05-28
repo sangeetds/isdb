@@ -23,16 +23,17 @@ class SongServiceImpl(
   private val spotifyApi = SpotifyAPI();
   private val logger = KotlinLogging.logger {}
 
-  override fun getTracks(songName: String?): List<SongDTO> {
+  override fun getTracks(songName: String?, userId: String): List<SongDTO> {
+    val user = this.userService.getUser(userId)
     songName?.let { name ->
       this.logger.info { "Fetching tracks for query $songName" }
-      val trackList = this.spotifyApi.getTracksWithQuery(name).toSongDTO()
+      val trackList = this.spotifyApi.getTracksWithQuery(name).toSongDTO(user?.id ?: "")
 
       this.logger.info { "Returning tracks with names ${trackList.map { it.name }}" }
       return trackList
     }
 
-    val songDTOs = this.songRepository.findAll().getSongDTO()
+    val songDTOs = this.songRepository.findAll().getSongDTO(user?.id ?: "")
     this.logger.info { "Returning tracks with names ${songDTOs.map { it.name }}}" }
 
     return songDTOs
