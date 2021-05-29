@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service
 import java.util.Objects
 
 @Service
-class SongServiceImpl(
+class SongServiceImpl (
   @Autowired val songRepository: SongRepository,
-  @Autowired val userService: UserService
+  @Autowired val userService: UserService,
+  @Autowired val spotifyApi: SpotifyAPI
 ) : SongService {
 
-  private val spotifyApi = SpotifyAPI();
   private val logger = KotlinLogging.logger {}
 
   override fun getTracks(songName: String?, userId: String): List<SongDTO> {

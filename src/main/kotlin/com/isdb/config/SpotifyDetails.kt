@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration
 @ConstructorBinding
 @ConfigurationProperties("spotify")
 data class SpotifyDetails(
-  val clientId: String,
-  val clientSecret: String,
-  val apiAuth: String,
-  val apiSearch: String,
+  val id: String,
+  val secret: String,
+  val auth: String,
+  val search: String,
 )

@@ -7,16 +7,17 @@ import com.isdb.enums.Action
 import com.isdb.model.SimpleTrack
 import com.isdb.utils.RetrofitAdapter
 import mu.KotlinLogging
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class SpotifyAPI {
+class SpotifyAPI(@Autowired val retrofitAdapter: RetrofitAdapter) {
 
   private val logger = KotlinLogging.logger {}
 
   private fun getAuthToken(): String {
     logger.info { "Auth Token request from spotify" }
-    val retrofitService = RetrofitAdapter.getRetrofit(action = Action.AUTH)
+    val retrofitService = retrofitAdapter.getRetrofit(action = Action.AUTH)
     val auth = getToken(retrofitService)
 
     return when {
@@ -33,7 +34,7 @@ class SpotifyAPI {
 
   fun getTracksWithQuery(track: String): List<SimpleTrack> {
     val token = getAuthToken()
-    val retrofitService = RetrofitAdapter.getRetrofit(action = Action.SEARCH, token = token)
+    val retrofitService = retrofitAdapter.getRetrofit(action = Action.SEARCH, token = token)
 
     logger.info { "Tracks requested from Spotify." }
     val tracks = getTracks(service = retrofitService, trackSearchValue = track, "track")
@@ -52,7 +53,7 @@ class SpotifyAPI {
 
   fun getUserTrack(spotifyId: String): SimpleTrack {
     val token = getAuthToken()
-    val retrofitService = RetrofitAdapter.getRetrofit(action = Action.TRACK, token = token)
+    val retrofitService = retrofitAdapter.getRetrofit(action = Action.TRACK, token = token)
 
     logger.info { "Getting track info from Spotify" }
     val track = getTrack(service = retrofitService, trackSearchId = spotifyId)
