@@ -20,8 +20,6 @@ repositories {
 }
 
 dependencies {
-    // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
-    // implementation("org.junit.jupiter:junit-jupiter:5.4.2")
     val moshiVersion = "1.12.0"
     val retrofitVersion = "2.9.0"
 
@@ -48,6 +46,9 @@ dependencies {
 
     // spring API docs
     implementation("org.springdoc:springdoc-openapi-ui:1.5.9")
+
+    // Kotlin Jackson
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     // Kotlin logging
     implementation("io.github.microutils:kotlin-logging:1.12.5")

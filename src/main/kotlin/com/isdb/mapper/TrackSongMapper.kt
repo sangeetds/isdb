@@ -8,19 +8,18 @@ class TrackSongMapper {
 
   companion object {
 
-    fun List<SimpleTrack>.toSongDTO(id: String): List<SongDTO> = this.map { track ->
+    fun List<SimpleTrack>.toSongDTO(): List<SongDTO> = this.map { track ->
       SongDTO(
         name = track.name,
         albumName = track.album.name,
         releaseDate = track.album.releaseDate,
         image = track.album.images,
         spotifyId = track.id,
-        url = track.externalUrls.spotify,
-        isUserRated = id.isNotBlank()
+        url = track.externalUrls.spotify
       )
     }
 
-    fun List<Song>.getSongDTO(id: String): List<SongDTO> = this.map { song ->
+    fun List<Song>.getSongDTO(songIdSet: HashSet<String>): List<SongDTO> = this.map { song ->
       SongDTO(
         id = song.id!!,
         name = song.name,
@@ -32,7 +31,7 @@ class TrackSongMapper {
         userRatings = song.userRatings,
         criticsRatings = song.criticsRatings,
         votes = song.votes,
-        isUserRated = id.isNotBlank()
+        isUserRated = songIdSet.contains(song.id)
       )
     }
   }
