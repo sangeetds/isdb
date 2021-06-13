@@ -51,7 +51,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     // Kotlin logging
-    implementation("io.github.microutils:kotlin-logging:1.12.5")
+    implementation("io.github.microutils:kotlin-logging:2.0.8")
 
     // Spring Rest Client Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
