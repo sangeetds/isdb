@@ -6,7 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
     kotlin("jvm") version "1.4.30"
-    kotlin("plugin.spring") version "1.4.30"
+    kotlin("plugin.spring") version "1.7.10"
     kotlin("plugin.jpa") version "1.4.30"
     kotlin("kapt") version "1.4.10"
 }
