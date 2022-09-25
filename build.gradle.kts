@@ -8,7 +8,7 @@ plugins {
     kotlin("jvm") version "1.4.30"
     kotlin("plugin.spring") version "1.4.30"
     kotlin("plugin.jpa") version "1.4.30"
-    kotlin("kapt") version "1.4.10"
+    kotlin("kapt") version "1.7.10"
 }
 
 group = "com.isdb"
