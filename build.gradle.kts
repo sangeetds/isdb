@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    val moshiVersion = "1.12.0"
+    val moshiVersion = "1.15.1"
     val retrofitVersion = "2.9.0"
 
     // kotlin
