@@ -45,7 +45,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     // spring API docs
-    implementation("org.springdoc:springdoc-openapi-ui:1.5.10")
+    implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
 
     // Kotlin Jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
