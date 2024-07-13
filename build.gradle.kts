@@ -64,7 +64,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
     // Truth testing lib
-    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("com.google.truth:truth:1.4.4")
 }
 
 tasks.withType<KotlinCompile> {
