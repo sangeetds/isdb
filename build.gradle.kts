@@ -58,7 +58,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 
     // Kotlin Mocking
-    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("io.mockk:mockk:1.14.11")
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
